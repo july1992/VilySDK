@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/root"
+   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            >
+
+
+            <ProgressBar
+                android:id="@+id/pb1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="70"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progressDrawable="@drawable/progress1" />
+            <ProgressBar
+                android:id="@+id/pb2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:progress="70"
+                android:max="100"
+                android:layout_marginLeft="20dp"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progressDrawable="@drawable/progress2" />
+            <ProgressBar
+                android:id="@+id/pb3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:progress="70"
+                android:layout_marginLeft="150dp"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progressDrawable="@drawable/progress3" />
+            <ProgressBar
+                android:id="@+id/pb4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:progress="70"
+                android:layout_marginLeft="270dp"
+                android:max="100"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:progressDrawable="@drawable/progress4" />
+
+        </RelativeLayout>
+
+        <com.vily.progressbar.MyProgressBarUI
+            android:id="@+id/mPb"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            app:backgroundColor="@color/background"
+            app:stokerColor="@color/black"
+            />
+
+
+
+
+        <Button
+            android:id="@+id/btn_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="开始转圈"/>
+    </LinearLayout>
+
+    <com.vily.progressbar.MyBottomLayout
+        android:id="@+id/myLayout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+    </com.vily.progressbar.MyBottomLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="#000000"/>
+    <LinearLayout
+        android:id="@+id/lly"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/shape_progressbar_bg"
+        android:orientation="vertical"
+        android:visibility="gone"
+
+         >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+
+            android:text="萨达达   等等等等等等等等等 等等等等等"/>
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+    </LinearLayout>
+</RelativeLayout>

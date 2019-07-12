@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lly"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="vertical"
+    android:background="#FFF"
+     >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+
+        android:text="萨达达   等等等等等等等等等 等等等等等" />
+
+    <com.vily.progressbar.RotateUi
+        android:id="@+id/rotate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.vily.progressbar.RotateUi>
+</LinearLayout>

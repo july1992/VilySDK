@@ -1,0 +1,1 @@
+include ':app', ':camera1', ':vilysdk2', ':progressbar', ':pay', ':map', ':chart'
