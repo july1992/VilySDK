@@ -80,6 +80,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:text="开始转圈"/>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
     </LinearLayout>
 
     <com.vily.progressbar.MyBottomLayout
@@ -89,13 +98,6 @@
 
     </com.vily.progressbar.MyBottomLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:background="#000000"/>
     <LinearLayout
         android:id="@+id/lly"
         android:layout_width="match_parent"

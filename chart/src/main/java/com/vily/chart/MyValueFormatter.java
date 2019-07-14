@@ -23,6 +23,7 @@ public class MyValueFormatter extends ValueFormatter {
     private String title="";
 
     public MyValueFormatter(String suffix) {
+
         mFormat = new DecimalFormat("###,###,###,##0.0");
         this.suffix = suffix;
     }
@@ -37,23 +38,23 @@ public class MyValueFormatter extends ValueFormatter {
         mFormat = new DecimalFormat("###,###,###,##0.0");
     }
 
+    private boolean first=true;
     @Override
     public String getFormattedValue(float value) {
-        return mFormat.format(value) + suffix;
-    }
 
 
-    @Override
-    public String getAxisLabel(float value, AxisBase axis) {
-        Log.i(TAG, "value: ---------value:"+value+"---sumCount:"+sumCount+"---currCount:"+currCount);
-
-
-        if(currCount==sumCount){
-            return title;
+        if(first){
+            Log.i(TAG, "getFormattedValue: -------------:");
+            currCount++;
+            if(currCount==sumCount){
+                first=false;
+                return title+"";
+            }
         }
-        currCount++;
-        return "";
 
+
+        return "xxx";
     }
+
 
 }

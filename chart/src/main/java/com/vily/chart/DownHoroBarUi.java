@@ -3,6 +3,7 @@ package com.vily.chart;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -38,11 +39,11 @@ public class DownHoroBarUi extends LinearLayout {
 
 
     public DownHoroBarUi(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public DownHoroBarUi(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public DownHoroBarUi(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -52,29 +53,28 @@ public class DownHoroBarUi extends LinearLayout {
     }
 
     private void initView() {
-        mContext=BaseApplication.getContext();
-        mInflater=LayoutInflater.from(mContext);
-        if(mView==null) {
-            mView = mInflater.inflate(R.layout.layout_downbar, this,true);
+        mContext = BaseApplication.getContext();
+        mInflater = LayoutInflater.from(mContext);
+        if (mView == null) {
+            mView = mInflater.inflate(R.layout.layout_downbar, this, true);
             mChart = mView.findViewById(R.id.bar);
 
         }
     }
 
 
-
     public void initChartData() {
 
-
-        mChart.getLegend().setEnabled(false);
-        mChart.getDescription().setEnabled(false);
-        mChart.setDrawGridBackground(false);
-
         XAxis xAxis = mChart.getXAxis();
-
+        xAxis.setEnabled(true);
 //        xAxis.setGranularity(1f);
-        xAxis.setCenterAxisLabels(false);
+//        xAxis.setCenterAxisLabels(false);
+        xAxis.setLabelCount(5);
+
+        xAxis.setAxisLineColor(Color.parseColor("#00FFFFFF"));
+        xAxis.setTextSize(10f);
         xAxis.setPosition(XAxis.XAxisPosition.TOP);
+        xAxis.setAvoidFirstLastClipping(false);
         xAxis.setDrawGridLines(false);
         xAxis.setValueFormatter(new ValueFormatter() {
             @Override
@@ -83,30 +83,40 @@ public class DownHoroBarUi extends LinearLayout {
             }
         });
 
-        mChart.setExtraTopOffset(10f);
-        mChart.getAxisLeft().setEnabled(false);
+        YAxis yAxis = mChart.getAxisLeft();
+        yAxis.setEnabled(false);
+        // 一定要设置 不然X轴和Y轴的0点不相交
+        yAxis.setAxisMaximum(0);
+
         mChart.getAxisRight().setEnabled(false);
+        mChart.setExtraTopOffset(10f);
+        mChart.getLegend().setEnabled(false);
+        mChart.getDescription().setEnabled(false);
+        mChart.setDrawGridBackground(false);
 
     }
 
 
-    public void setData(){
+    public void setData() {
 
 
-        float groupSpace = 0.08f;
-        float barSpace = 0.03f; // x4 DataSet
-        float barWidth = 0.2f; // x4 DataSet
-        // (0.2 + 0.03) * 4 + 0.08 = 1.00 -> interval per "group"
+//        float groupSpace = 0.08f;
+//        float barSpace = 0.03f; // x4 DataSet
+//        float barWidth = 0.2f; // x4 DataSet
+//        // (0.2 + 0.03) * 4 + 0.08 = 1.00 -> interval per "group"
 
-        int startYear = 1980;
-        int endYear = startYear + 10;
+        float groupSpace = 0f;
+        float barSpace = 0f; // x4 DataSet
+        float barWidth = 0.25f; // x4 DataSet
+
+        int startYear = 0;
+        int endYear = 0 + 5;
 
 
         ArrayList<BarEntry> values1 = new ArrayList<>();
         ArrayList<BarEntry> values2 = new ArrayList<>();
         ArrayList<BarEntry> values3 = new ArrayList<>();
         ArrayList<BarEntry> values4 = new ArrayList<>();
-
 
 
         for (int i = startYear; i < endYear; i++) {
@@ -158,7 +168,7 @@ public class DownHoroBarUi extends LinearLayout {
         mChart.getXAxis().setAxisMinimum(startYear);
 
         // barData.getGroupWith(...) is a helper that calculates the width each group needs based on the provided parameters
-        mChart.getXAxis().setAxisMaximum(startYear + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * 10);
+        mChart.getXAxis().setAxisMaximum(startYear + mChart.getBarData().getGroupWidth(groupSpace, barSpace) * 5);
         mChart.groupBars(startYear, groupSpace, barSpace);
         mChart.invalidate();
     }

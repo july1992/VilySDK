@@ -2,6 +2,7 @@ package com.vily.progressbar;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,6 +18,8 @@ import android.widget.TextView;
  **/
 public class MyBottomLayout extends LinearLayout {
 
+    private static final String TAG = "MyBottomLayout";
+
     private LayoutInflater mInflater;
     private Context mContext;
     private View mView;
@@ -27,83 +30,76 @@ public class MyBottomLayout extends LinearLayout {
     private TranslateAnimation mUpAnim;
 
     public MyBottomLayout(Context context) {
-        this(context,null);
+        this(context, null);
 
     }
 
-    public MyBottomLayout(Context context,   AttributeSet attrs) {
-        this(context, attrs,0);
+    public MyBottomLayout(Context context, AttributeSet attrs) {
+        this(context, attrs, 0);
         initView();
     }
 
-    public MyBottomLayout(Context context,   AttributeSet attrs, int defStyleAttr) {
+    public MyBottomLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        mContext=context;
+        mContext = context;
         initView();
 
     }
 
     private void initView() {
 
-        mInflater=LayoutInflater.from(mContext);
-        if(mView==null){
-            mView = mInflater.inflate(R.layout.layout_bottom, this,true);
+        mInflater = LayoutInflater.from(mContext);
+        if (mView == null) {
+            mView = mInflater.inflate(R.layout.layout_bottom, this, true);
             mTv_title = mView.findViewById(R.id.tv_title);
             mRotate = mView.findViewById(R.id.rotate);
         }
     }
 
-    public void startShow(final MyBottomLayout root){
+    public void startShow(final MyBottomLayout root) {
         mHeight = getResources().getDisplayMetrics().heightPixels;
+        Log.i(TAG, "startShow: ---------------mHeight:"+mHeight);
         root.post(new Runnable() {
             @Override
             public void run() {
-//                root.setY(mHeight-dipToPx(30));
+                root.setY(mHeight);
 
-
+                Log.i(TAG, "run: ---------------:"+root.getY());
             }
         });
-        TranslateAnimation startAni = new TranslateAnimation(
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,dipToPx(100),
-                Animation.ABSOLUTE,dipToPx(200));
-        startAni.setRepeatCount(0);
-        startAni.setDuration(2000);
-        startAni.setFillAfter(true);
 
-        root.setAnimation(startAni);
 
     }
 
-    private boolean type=true;
-    public void setData(final MyBottomLayout root){
+    private boolean type = true;
 
-        mHeight = getResources().getDisplayMetrics().heightPixels;
-        // 设置起始位置
-        root.post(new Runnable() {
-            @Override
-            public void run() {
-                root.setY(mHeight-dipToPx(30));
-            }
-        });
+    public void setData(final MyBottomLayout root) {
+
+//        mHeight = getResources().getDisplayMetrics().heightPixels;
+//        // 设置起始位置
+//        root.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                root.setY(mHeight - dipToPx(30));
+//            }
+//        });
         // 动画
         mDownAnim = new TranslateAnimation(
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,dipToPx(170));
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, dipToPx(170));
         mDownAnim.setRepeatCount(0);
         mDownAnim.setDuration(200);
         mDownAnim.setFillAfter(true);
 
 
         mUpAnim = new TranslateAnimation(
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,0f,
-                Animation.ABSOLUTE,-dipToPx(170));
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, -dipToPx(170));
         mUpAnim.setRepeatCount(0);
         mUpAnim.setDuration(200);
         mUpAnim.setFillAfter(true);
@@ -118,7 +114,7 @@ public class MyBottomLayout extends LinearLayout {
             @Override
             public void onAnimationEnd(Animation animation) {
                 root.clearAnimation();
-                root.setY(mHeight-dipToPx(200));
+                root.setY(mHeight - dipToPx(200));
             }
 
             @Override
@@ -136,7 +132,7 @@ public class MyBottomLayout extends LinearLayout {
             @Override
             public void onAnimationEnd(Animation animation) {
                 root.clearAnimation();
-                root.setY(mHeight-dipToPx(30));
+                root.setY(mHeight - dipToPx(30));
             }
 
             @Override
@@ -149,11 +145,11 @@ public class MyBottomLayout extends LinearLayout {
             @Override
             public void onClick(View v) {
 
-                if(type){
-                    type=false;
+                if (type) {
+                    type = false;
                     root.startAnimation(mUpAnim);
-                }else{
-                    type=true;
+                } else {
+                    type = true;
                     root.startAnimation(mDownAnim);
                 }
             }
@@ -167,12 +163,46 @@ public class MyBottomLayout extends LinearLayout {
         return (int) (dip * scale + 0.5f * (dip >= 0 ? 1 : -1));
     }
 
-    public void startRotate(){
+    public void startRotate() {
         mRotate.startRotate();
     }
 
-    public void stopRotate(){
+    public void stopRotate() {
         mRotate.stopRotate();
     }
 
+    public void show(final MyBottomLayout root) {
+        Log.i(TAG, "show:--------: "+root.getY());
+        TranslateAnimation startAni = new TranslateAnimation(
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0f,
+                Animation.ABSOLUTE, 0,
+                Animation.ABSOLUTE, -dipToPx(30));
+        startAni.setRepeatCount(0);
+        startAni.setDuration(500);
+        startAni.setFillAfter(true);
+
+        startAni.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                Log.i(TAG, "show:--------2: "+root.getY());
+                root.clearAnimation();
+                root.setY(mHeight - dipToPx(30));
+
+                setData(root);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        root.startAnimation(startAni);
+    }
 }

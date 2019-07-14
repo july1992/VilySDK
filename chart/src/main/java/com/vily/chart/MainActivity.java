@@ -8,6 +8,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     private WareChart mWare_chart;
     private DownHoroBarUi mDown_bar;
+    private OvilBarUi ovil_bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
         mDown_bar = findViewById(R.id.down_bar);
 
+        ovil_bar = findViewById(R.id.ovil_bar);
+
         mDown_bar.initChartData();
         mDown_bar.setData();
+
+
+        ovil_bar.initChartData();
+        ovil_bar.setData();
     }
 }

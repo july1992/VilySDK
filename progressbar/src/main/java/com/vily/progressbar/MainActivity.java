@@ -2,6 +2,8 @@ package com.vily.progressbar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.vily.progressbar.adapt.MyAdapter;
+import com.vily.progressbar.adapt.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private RelativeLayout mRoot;
     private ReportLayout mReportLayout;
     private SettingWindow mSettingWindow;
-    private View mView;
+    private RecyclerView rv_recycle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,32 +56,30 @@ public class MainActivity extends AppCompatActivity {
         mMyLayout = findViewById(R.id.myLayout);
         mBtn_rotate = findViewById(R.id.btn_rotate);
         mRoot = findViewById(R.id.root);
-        mView = findViewById(R.id.view);
+        rv_recycle = findViewById(R.id.rv_recycle);
+
 
         initData();
 
         setPosition();
 
-
-
-        mBtn_rotate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                mMyLayout.startShow(mMyLayout);
-//                if(mSettingWindow==null){
-//                    mSettingWindow = new SettingWindow(MainActivity.this,mRoot);
-//                }
-//                mSettingWindow.showBase(mView);
-
-            }
-        });
-
     }
 
     private void setPosition() {
+        mMyLayout.startShow(mMyLayout);
 
-//        mMyLayout.setData(mMyLayout);
+        rv_recycle.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        List<Student> students=new ArrayList<>();
+        students.add(new Student());
+        students.add(new Student());
+        students.add(new Student());
+        students.add(new Student());
+        students.add(new Student());
+        students.add(new Student());
+        MyAdapter myAdapter = new MyAdapter(students);
+        rv_recycle.setAdapter(myAdapter);
+        myAdapter.openLoadAnimation((BaseQuickAdapter.ALPHAIN));
     }
 
     private void initData() {

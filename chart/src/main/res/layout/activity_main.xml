@@ -14,9 +14,10 @@
         <com.vily.chart.DownHoroBarUi
             android:id="@+id/down_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="300dp">
 
         </com.vily.chart.DownHoroBarUi>
+
         <com.vily.chart.WareChart
             android:id="@+id/ware_chart"
             android:layout_width="match_parent"
@@ -24,6 +25,10 @@
 
         </com.vily.chart.WareChart>
 
+        <com.vily.chart.OvilBarUi
+            android:id="@+id/ovil_bar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
     </LinearLayout>
 
 

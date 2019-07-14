@@ -114,7 +114,6 @@ public class WareChart extends LinearLayout {
         mChart.getAxisRight().setEnabled(false);
 
 
-
     }
 
     private void setChartData() {
@@ -135,15 +134,9 @@ public class WareChart extends LinearLayout {
 
             set1 = (LineDataSet) mChart.getData().getDataSetByIndex(0);
             set1.setValues(entries);
-            set1.setDrawValues(false);
-            set1.setDrawCircles(false);
-            set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
             set2 = (LineDataSet) mChart.getData().getDataSetByIndex(1);
             set2.setValues(entries2);
-            set2.setDrawValues(false);
-            set2.setDrawCircles(false);
-            set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
             mChart.getData().notifyDataChanged();
             mChart.notifyDataSetChanged();
@@ -157,8 +150,8 @@ public class WareChart extends LinearLayout {
             Drawable drawable = ContextCompat.getDrawable(mContext,R.color.colorAccent);
             set1.setFillDrawable(drawable);
             set1.setValues(entries);
-            set1.setDrawValues(false);
-            set1.setValueFormatter(new MyValueFormatter(entries.size(),"set1"));
+            set1.setDrawValues(true);
+            set1.setValueFormatter(new MyValueFormatter(entries.size(),"全国水平"));
             set1.setDrawCircles(false);
             set1.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
@@ -171,8 +164,8 @@ public class WareChart extends LinearLayout {
             Drawable drawable2 = ContextCompat.getDrawable(mContext,R.color.colorPrimary);
             set2.setFillDrawable(drawable2);
             set2.setValues(entries2);
-            set2.setDrawValues(false);
-            set2.setValueFormatter(new MyValueFormatter(entries2.size(),"set2"));
+            set2.setDrawValues(true);
+            set2.setValueFormatter(new MyValueFormatter(entries2.size(),"你的分值"));
             set2.setDrawCircles(false);
             set2.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
