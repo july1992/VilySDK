@@ -1,21 +1,42 @@
 package com.vily.progressbar.adapt;
 
-import android.support.annotation.Nullable;
+import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.vily.progressbar.R;
 
 import java.util.List;
 
-public class MyAdapter extends BaseQuickAdapter<Student,BaseViewHolder> {
+/**
+ *    section
+ */
+public class MyAdapter extends BaseSectionQuickAdapter<MySection,BaseViewHolder> {
 
-    public MyAdapter( List<Student> data) {
-        super(R.layout.adapt_item, data);
+    public MyAdapter( List<MySection> data) {
+        super(R.layout.adapt_item, R.layout.adapt_head, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, Student item) {
+    protected void convertHead(BaseViewHolder helper, MySection item) {
+
+        TextView tv_data = helper.getView(R.id.tv_data);
+        tv_data.setText(item.header);
+    }
+
+    @Override
+    protected void convert(BaseViewHolder helper, MySection item) {
+
+
+        TextView tv_name = helper.getView(R.id.tv_name);
+        tv_name.setText(item.t.getName());
 
     }
+
+//    public MyAdapter( List<Student> data) {
+//        super(R.layout.adapt_item, data);
+//    }
+
+
+
 }

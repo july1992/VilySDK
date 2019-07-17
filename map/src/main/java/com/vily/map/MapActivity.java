@@ -25,8 +25,6 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
     private MapView mMapView;
     private MapUtils mMapUtils;
     private AMap mMap;
-    private LocationUtils mLocationUtils;
-    private MyLocationStyle mMyLocationStyle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,31 +38,27 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
 
         initData();
 
+        initListener();
         drawMarker();
 
 
     }
 
+
     private void initData() {
         mMapUtils = MapUtils.getInstance();
-        mMap = mMapUtils.getAMap(mMapView);  // 获取地图对象
-        mMapUtils.initMap();
 
-        mLocationUtils = LocationUtils.getInstance();
-        mMyLocationStyle = mLocationUtils.getMyLocationStyle();   // 获取定位对象
-        mLocationUtils.initLocation();   // 初始化定位
+        mMapUtils.initMap(mMapView);
+        mMap=mMapUtils.getAMap();
+        mMapUtils.initLocation();
 
-        mMapUtils.setLocation(mMyLocationStyle);
 
+
+
+    }
+    private void initListener() {
         mMap.setOnMyLocationChangeListener(this);
         mMap.setOnMarkerClickListener(this);
-//        mMapView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                mMapUtils.closeMarker();
-//            }
-//        });
     }
 
 
@@ -74,7 +68,9 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
         double lat=34.341568;
         double lon=108.940174;
 
-        mMapUtils.addMarker(title,lat,lon);
+//        mMapUtils.addMarker(title,lat,lon);
+        mMapUtils.drawLine();
+        mMapUtils.drawCircle();
     }
 
 
@@ -98,6 +94,11 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
     protected void onDestroy() {
         super.onDestroy();
         mMapView.onDestroy();
+//        if(mMapUtils!=null){
+//            mMapUtils.onDestroy();
+//            mMapUtils=null;
+//        }
+
     }
     @Override
     protected void onResume() {

@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.vily.progressbar.adapt.MyAdapter;
+import com.vily.progressbar.adapt.MySection;
 import com.vily.progressbar.adapt.Student;
 
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private ReportLayout mReportLayout;
     private SettingWindow mSettingWindow;
     private RecyclerView rv_recycle;
+    private MyPopuWindow mPopuWindow;
 
 
     @Override
@@ -62,6 +64,21 @@ public class MainActivity extends AppCompatActivity {
         initData();
 
         setPosition();
+        mBtn_rotate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                mMyLayout.show(mMyLayout);
+
+                if(mPopuWindow==null){
+                    mPopuWindow = new MyPopuWindow(MainActivity.this);
+                }else{
+                    mPopuWindow.show();
+                }
+
+
+
+            }
+        });
 
     }
 
@@ -70,14 +87,43 @@ public class MainActivity extends AppCompatActivity {
 
         rv_recycle.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+        List<MySection> sections=new ArrayList<>();
         List<Student> students=new ArrayList<>();
-        students.add(new Student());
-        students.add(new Student());
-        students.add(new Student());
-        students.add(new Student());
-        students.add(new Student());
-        students.add(new Student());
-        MyAdapter myAdapter = new MyAdapter(students);
+        students.add(new Student("1231313","张三"));
+        students.add(new Student("1231314","张4"));
+        students.add(new Student("1231315","张5"));
+        students.add(new Student("1231315","张7"));
+        students.add(new Student("1231315","张8"));
+        students.add(new Student("1231318","张9"));
+        students.add(new Student("1231319","张14"));
+        students.add(new Student("1231310","2313"));
+
+        for(int i=0;i<students.size();i++){
+            MySection section;
+            if(i==0 ||!students.get(i).getData().equals(students.get(i-1).getData()) ){
+                section= new MySection(true, students.get(i).getData());
+                sections.add(section);
+            }
+
+            section = new MySection(students.get(i));
+            sections.add(section);
+
+        }
+
+//
+//        section.t=new Student("asdasdad","1111");
+//
+//        sections.add(new MySection(true,"head"));
+//        sections.add(new MySection(new Student("1231313","张三")));
+//        sections.add(new MySection(new Student("1231313","张三")));
+//        sections.add(new MySection(new Student("1231313","张三")));
+//        sections.add(new MySection(true,"head"));
+//        sections.add(new MySection(true,"head"));
+//        sections.add(new MySection(true,"head"));
+//
+
+
+        MyAdapter myAdapter = new MyAdapter(sections);
         rv_recycle.setAdapter(myAdapter);
         myAdapter.openLoadAnimation((BaseQuickAdapter.ALPHAIN));
     }
