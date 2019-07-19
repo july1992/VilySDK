@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -89,10 +90,22 @@ public class DownHoroBarUi extends LinearLayout {
         yAxis.setAxisMaximum(0);
 
         mChart.getAxisRight().setEnabled(false);
-        mChart.setExtraTopOffset(10f);
-        mChart.getLegend().setEnabled(false);
+        mChart.setExtraTopOffset(24f);
+//        mChart.getLegend().setEnabled(false);
         mChart.getDescription().setEnabled(false);
         mChart.setDrawGridBackground(false);
+
+
+
+
+        Legend legend = mChart.getLegend();
+        legend.setEnabled(false);
+//        legend.setForm(Legend.LegendForm.CIRCLE);
+//        legend.setFormSize(16f);
+//        legend.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
+//        legend.setHorizontalAlignment (Legend.LegendHorizontalAlignment .CENTER);
+//
+//        legend.setXEntrySpace(20f);
 
     }
 
@@ -143,16 +156,16 @@ public class DownHoroBarUi extends LinearLayout {
 
         } else {
             // create 4 DataSets
-            set1 = new BarDataSet(values1, "Company A");
+            set1 = new BarDataSet(values1, "苏醒");
             set1.setColor(Color.rgb(104, 241, 175));
             set1.setDrawValues(false);
-            set2 = new BarDataSet(values2, "Company B");
+            set2 = new BarDataSet(values2, "苏醒");
             set2.setColor(Color.rgb(164, 228, 251));
             set2.setDrawValues(false);
-            set3 = new BarDataSet(values3, "Company C");
+            set3 = new BarDataSet(values3, "苏醒");
             set3.setColor(Color.rgb(242, 247, 158));
             set3.setDrawValues(false);
-            set4 = new BarDataSet(values4, "Company D");
+            set4 = new BarDataSet(values4, "苏醒");
             set4.setColor(Color.rgb(255, 102, 0));
             set4.setDrawValues(false);
 

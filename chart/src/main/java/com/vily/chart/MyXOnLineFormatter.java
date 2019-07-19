@@ -12,39 +12,32 @@ import java.text.DecimalFormat;
 
  *  
  **/
-public class MyValueFormatter extends ValueFormatter {
+public class MyXOnLineFormatter extends ValueFormatter {
 
     private static final String TAG = "MyXFormatter";
     private final DecimalFormat mFormat;
     private String suffix;
 
-    private int sumCount=0;
-    private int currCount=0;
-    private String title="aaaaa";
-
-    public MyValueFormatter(String suffix) {
-
+    public MyXOnLineFormatter(String suffix) {
         mFormat = new DecimalFormat("###,###,###,##0.0");
         this.suffix = suffix;
     }
 
-    public MyValueFormatter() {
-        mFormat = new DecimalFormat("###,###,###,##0.0");
-    }
-    public MyValueFormatter(int count,String value) {
-        sumCount=count;
-        currCount=0;
-        title=value;
+    public MyXOnLineFormatter() {
         mFormat = new DecimalFormat("###,###,###,##0.0");
     }
 
-    private boolean first=true;
     @Override
     public String getFormattedValue(float value) {
-
-
-        return value+"分";
+        return mFormat.format(value) + suffix;
     }
 
+    @Override
+    public String getAxisLabel(float value, AxisBase axis) {
+        Log.i(TAG, "getAxisLabel: ---------value:"+value);
+
+        return (int)value+"XXXX"+"\n"+"ssssss";
+
+    }
 
 }

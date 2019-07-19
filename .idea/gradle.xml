@@ -9,9 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/blutooth" />
             <option value="$PROJECT_DIR$/camera1" />
             <option value="$PROJECT_DIR$/chart" />
             <option value="$PROJECT_DIR$/http" />
+            <option value="$PROJECT_DIR$/litepal" />
             <option value="$PROJECT_DIR$/map" />
             <option value="$PROJECT_DIR$/pay" />
             <option value="$PROJECT_DIR$/progressbar" />

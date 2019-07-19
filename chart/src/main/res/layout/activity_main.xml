@@ -29,6 +29,13 @@
             android:id="@+id/ovil_bar"
             android:layout_width="match_parent"
             android:layout_height="300dp"/>
+
+        <com.vily.chart.HoroBarUi
+            android:id="@+id/horo_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </com.vily.chart.HoroBarUi>
     </LinearLayout>
 
 

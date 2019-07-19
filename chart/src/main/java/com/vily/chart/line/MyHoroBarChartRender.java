@@ -1,4 +1,4 @@
-package com.vily.chart.mychart;
+package com.vily.chart.line;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,19 +15,25 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.highlight.Range;
 import com.github.mikephil.charting.interfaces.dataprovider.BarDataProvider;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.renderer.BarChartRenderer;
+import com.github.mikephil.charting.renderer.HorizontalBarChartRenderer;
 import com.github.mikephil.charting.utils.Transformer;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.util.List;
 
-public class MyBarChartRenderer extends BarChartRenderer {
+/**
+ *  * description : 
+ *  * Author : Vily
+ *  * Date : 2019/7/18
+ *  
+ **/
+public class MyHoroBarChartRender extends HorizontalBarChartRenderer {
 
     private RectF mBarShadowRectBuffer = new RectF();
     private int[] colo;
 
-    public MyBarChartRenderer(BarDataProvider chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
+    public MyHoroBarChartRender(BarDataProvider chart, ChartAnimator animator, ViewPortHandler viewPortHandler) {
         super(chart, animator, viewPortHandler);
 
         this.mChart = chart;
@@ -41,6 +47,7 @@ public class MyBarChartRenderer extends BarChartRenderer {
     }
 
 
+    //
     @Override
     protected void drawDataSet(Canvas c, IBarDataSet dataSet, int index) {
 
@@ -117,23 +124,6 @@ public class MyBarChartRenderer extends BarChartRenderer {
                         colo, null, Shader.TileMode.CLAMP);
                 mRenderPaint.setShader(shader);
 
-//                if (dataSet.getEntryForIndex(j/4).getY() > 140){
-//                    Shader shader = new LinearGradient(0, buffer.buffer[j + 1], 0, buffer.buffer[j + 3], Color.parseColor("#F37779"),
-//                            Color.parseColor("#8B0000"), Shader.TileMode.CLAMP);
-//                    mRenderPaint.setShader(shader);
-//                } else if(dataSet.getEntryForIndex(j/4).getY() < 30){
-//                    Shader shader = new LinearGradient(0, buffer.buffer[j + 1], 0, buffer.buffer[j + 3], Color.parseColor("#70AAFD"),
-//                            Color.parseColor("#8B0000"), Shader.TileMode.CLAMP);
-//                    mRenderPaint.setShader(shader);
-//                } else {
-//                    Shader shader = new LinearGradient(0, buffer.buffer[j + 1], 0, buffer.buffer[j + 3], Color.parseColor("#71A4A7"),
-//                            Color.parseColor("#8B0000"), Shader.TileMode.CLAMP);
-//                    mRenderPaint.setShader(shader);
-//                }
-            }else{
-//                Shader shader = new LinearGradient(0, buffer.buffer[j + 1], 0, buffer.buffer[j + 3], Color.parseColor("#8B0000"),
-//                        Color.parseColor("#FFFFFF"), Shader.TileMode.CLAMP);
-//                mRenderPaint.setShader(shader);
             }
             //修改画笔的属性 是否圆头
             mRenderPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -142,61 +132,60 @@ public class MyBarChartRenderer extends BarChartRenderer {
             c.drawLine(buffer.buffer[j]+wtch/2, buffer.buffer[j + 1], buffer.buffer[j + 2]-wtch/2,
                     buffer.buffer[j + 3], mRenderPaint);
             if (drawBorder) {
-                c.drawLine(buffer.buffer[j]+wtch/2, buffer.buffer[j + 1], buffer.buffer[j + 2]-wtch/2,
-                        buffer.buffer[j + 3], mRenderPaint);
+//                c.drawLine(buffer.buffer[j]+wtch/2, buffer.buffer[j + 1], buffer.buffer[j + 2]-wtch/2,
+//                        buffer.buffer[j + 3], mRenderPaint);
             }
         }
     }
-    /**
-     * 手指点击的半透明灰色修改
-     * */
-    @Override
-    public void drawHighlighted(Canvas c, Highlight[] indices) {
-        BarData barData = mChart.getBarData();
-        for (Highlight high : indices) {
-            IBarDataSet set = barData.getDataSetByIndex(high.getDataSetIndex());
-            if (set == null || !set.isHighlightEnabled())
-                continue;
-            BarEntry e = set.getEntryForXValue(high.getX(), high.getY());
-            if (!isInBoundsX(e, set))
-                continue;
-            Transformer trans = mChart.getTransformer(set.getAxisDependency());
-            mHighlightPaint.setColor(set.getHighLightColor());
-            mHighlightPaint.setAlpha(set.getHighLightAlpha());
-            boolean isStack = (high.getStackIndex() >= 0  && e.isStacked()) ? true : false;
-
-            final float y1;
-            final float y2;
-
-            if (isStack) {
-
-                if(mChart.isHighlightFullBarEnabled()) {
-
-                    y1 = e.getPositiveSum();
-                    y2 = -e.getNegativeSum();
-
-                } else {
-
-                    Range range = e.getRanges()[high.getStackIndex()];
-
-                    y1 = range.from;
-                    y2 = range.to;
-                }
-
-            } else {
-                y1 = e.getY();
-                y2 = 0.f;
-            }
-
-            prepareBarHighlight(e.getX(), y1, y2, barData.getBarWidth() / 2f, trans);
-
-            setHighlightDrawPos(high, mBarRect);
-            // c.drawRect(mBarRect, mHighlightPaint);  原父类方法
-            //修改画笔的属性 是否圆头  根据mBarRect的矩形区域算出线的宽度和中心点画线
-            mHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
-            mHighlightPaint.setStrokeWidth(mBarRect.right-mBarRect.left);
-            c.drawLine(mBarRect.centerX(),mBarRect.top,mBarRect.centerX(),mBarRect.bottom,mHighlightPaint);
-        }
-    }
-
+//    /**
+//     * 手指点击的半透明灰色修改
+//     * */
+//    @Override
+//    public void drawHighlighted(Canvas c, Highlight[] indices) {
+//        BarData barData = mChart.getBarData();
+//        for (Highlight high : indices) {
+//            IBarDataSet set = barData.getDataSetByIndex(high.getDataSetIndex());
+//            if (set == null || !set.isHighlightEnabled())
+//                continue;
+//            BarEntry e = set.getEntryForXValue(high.getX(), high.getY());
+//            if (!isInBoundsX(e, set))
+//                continue;
+//            Transformer trans = mChart.getTransformer(set.getAxisDependency());
+//            mHighlightPaint.setColor(set.getHighLightColor());
+//            mHighlightPaint.setAlpha(set.getHighLightAlpha());
+//            boolean isStack = (high.getStackIndex() >= 0  && e.isStacked()) ? true : false;
+//
+//            final float y1;
+//            final float y2;
+//
+//            if (isStack) {
+//
+//                if(mChart.isHighlightFullBarEnabled()) {
+//
+//                    y1 = e.getPositiveSum();
+//                    y2 = -e.getNegativeSum();
+//
+//                } else {
+//
+//                    Range range = e.getRanges()[high.getStackIndex()];
+//
+//                    y1 = range.from;
+//                    y2 = range.to;
+//                }
+//
+//            } else {
+//                y1 = e.getY();
+//                y2 = 0.f;
+//            }
+//
+//            prepareBarHighlight(e.getX(), y1, y2, barData.getBarWidth() / 2f, trans);
+//
+//            setHighlightDrawPos(high, mBarRect);
+//            // c.drawRect(mBarRect, mHighlightPaint);  原父类方法
+//            //修改画笔的属性 是否圆头  根据mBarRect的矩形区域算出线的宽度和中心点画线
+//            mHighlightPaint.setStrokeCap(Paint.Cap.ROUND);
+//            mHighlightPaint.setStrokeWidth(mBarRect.right-mBarRect.left);
+//            c.drawLine(mBarRect.centerX(),mBarRect.top,mBarRect.centerX(),mBarRect.bottom,mHighlightPaint);
+//        }
+//    }
 }
