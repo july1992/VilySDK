@@ -7,5 +7,39 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="MyDialog" parent="@style/Theme.AppCompat.Dialog">
 
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="android:windowAnimationStyle">@style/ActivityFade</item>
+
+        <item name="android:windowBackground">@color/translate</item>
+        <!--<item name="android:windowFrame">@null</item>               &lt;!&ndash; 设置边框 &ndash;&gt;-->
+        <!--<item name="android:windowFullscreen">true</item>           &lt;!&ndash; 设置全屏 &ndash;&gt;-->
+    </style>
+
+    <style name="MyDialog2" parent="android:Theme.Translucent">
+
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!--<item name="android:windowAnimationStyle">@style/ActivityFade</item>-->
+
+        <item name="android:windowBackground">@color/translate</item>
+        <!--<item name="android:windowFrame">@null</item>               &lt;!&ndash; 设置边框 &ndash;&gt;-->
+        <!--<item name="android:windowFullscreen">true</item>           &lt;!&ndash; 设置全屏 &ndash;&gt;-->
+    </style>
+
+
+    <style name="ActivityFade" >
+        <!--<item name="android:windowEnterAnimation">@anim/push_bottom_in</item>-->
+        <item name="android:activityOpenEnterAnimation">@anim/push_bottom_in</item>
+        <!--<item name="android:activityOpenExitAnimation">@anim/push_bottom_in</item>-->
+        <item name="android:activityCloseExitAnimation">@anim/push_bottom_out</item>
+
+        <!--<item name="android:activityCloseEnterAnimation">@anim/push_bottom_out</item>-->
+    </style>
+
+    <color name="translate">#00000000</color>
 </resources>

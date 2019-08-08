@@ -26,4 +26,6 @@
         android:layout_height="wrap_content"
         android:text="音视频流边录边播"
         android:layout_marginTop="20dp"/>
+
+
 </LinearLayout>

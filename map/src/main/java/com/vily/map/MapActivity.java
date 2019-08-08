@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
@@ -25,6 +26,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
     private MapView mMapView;
     private MapUtils mMapUtils;
     private AMap mMap;
+    private Button mBtn_air;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +35,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
         setContentView(R.layout.activity_map);
 
         mMapView = findViewById(R.id.map);
+        mBtn_air = findViewById(R.id.btn_air);
         mMapView.onCreate(savedInstanceState);
 
 
@@ -49,24 +52,29 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
         mMapUtils = MapUtils.getInstance();
 
         mMapUtils.initMap(mMapView);
-        mMap=mMapUtils.getAMap();
+        mMap = mMapUtils.getAMap();
         mMapUtils.initLocation();
 
 
-
-
     }
+
     private void initListener() {
         mMap.setOnMyLocationChangeListener(this);
         mMap.setOnMarkerClickListener(this);
+        mBtn_air.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
     private void drawMarker() {
 
-        String title="sss";
-        double lat=34.341568;
-        double lon=108.940174;
+        String title = "sss";
+        double lat = 34.341568;
+        double lon = 108.940174;
 
 //        mMapUtils.addMarker(title,lat,lon);
         mMapUtils.drawLine();
@@ -84,7 +92,7 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
         // 获取经纬度信息
 
 
-        Log.i(TAG, "onMyLocationChange: ---"+location.getLatitude()+"---:"+location.getLongitude());
+        Log.i(TAG, "onMyLocationChange: ---" + location.getLatitude() + "---:" + location.getLongitude());
 
         mMapUtils.moveCamera(location);
 
@@ -100,16 +108,19 @@ public class MapActivity extends AppCompatActivity implements AMap.OnMyLocationC
 //        }
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         mMapView.onResume();
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         mMapView.onPause();
     }
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);

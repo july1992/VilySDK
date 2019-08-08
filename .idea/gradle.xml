@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/map" />
             <option value="$PROJECT_DIR$/pay" />
             <option value="$PROJECT_DIR$/progressbar" />
+            <option value="$PROJECT_DIR$/scoroll" />
+            <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/vilysdk2" />
           </set>
         </option>
