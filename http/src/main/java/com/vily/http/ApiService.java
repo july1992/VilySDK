@@ -1,7 +1,11 @@
 package com.vily.http;
 
+import java.util.List;
+
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 /**
@@ -18,6 +22,22 @@ public interface ApiService {
     // 测试
     @GET("wechat/home/testParam")
     Observable<String> testParam(@Query("phone") String phone);
+
+    // 上传很多json 数据
+    @POST("wechat/user/addMoreUser")
+    Observable<ResultV> testJson(@Query("json") String json);
+
+    // 上传很多json 数据
+    @POST("wechat/user/testBody")
+    Observable<ResultV> testBody(@Body List<User> data);
+
+    // 上传很多json 数据
+    @POST("wechat/user/testBody2")
+    Observable<ResultV> testBody2(@Query("user_id") int user_id,@Body List<SleepBean> data);
+
+    // 上传很多json 数据
+    @POST("/senbloapi/sleep/submitSleepData")
+    Observable<ResultV> submitSleepData(@Query("user_id") int user_id,@Query("sleepData") String json);
 
 
     // 发送验证码

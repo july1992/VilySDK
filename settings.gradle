@@ -1,1 +1,1 @@
-include ':app', ':camera1', ':vilysdk2', ':progressbar', ':pay', ':map', ':chart', ':http', ':litepal', ':blutooth', ':scoroll', ':service'
+include ':app', ':camera1', ':vilysdk2', ':progressbar', ':pay', ':map', ':chart', ':http', ':litepal', ':blutooth', ':scoroll', ':service', ':file'

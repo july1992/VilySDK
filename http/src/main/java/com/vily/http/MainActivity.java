@@ -6,6 +6,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.alibaba.fastjson.JSON;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DefaultObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -17,15 +24,20 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private Button mBtn_click;
+    private Button mBtn_click2;
+
+//    private String base_url="http://192.168.93.83:8080/";
+    private String base_url="http://192.168.93.113:8080/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mBtn_click2 = findViewById(R.id.btn_click2);
+//
         mBtn_click = findViewById(R.id.btn_click);
         Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl("http://192.168.93.113:8080/")
+                .baseUrl(base_url)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         Retrofit build = builder.build();
@@ -33,18 +45,83 @@ public class MainActivity extends AppCompatActivity {
         final ApiService apiService = build.create(ApiService.class);
 
 
+        final List<User> list=new ArrayList();
+        for(int i=0;i<100;i++){
+            User user=new User(""+i,"ssssad"+i,"ssss","aaaa","2018-05-15 00:00:00");
+            list.add(user);
+        }
+
+
+        final String json = JSON.toJSONString(list);
+
+        Log.i(TAG, "onCreate: -----:"+json);
 
         mBtn_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick: ----开始网络请求");
-                apiService.testParam("14a4sdsads")
+
+                try {
+                    String encode = URLEncoder.encode(json, "utf-8");
+
+                    apiService.testJson(encode)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new DefaultObserver<ResultV>() {
+                                @Override
+                                public void onNext(ResultV s) {
+                                    Log.i(TAG, "onNext: ----"+s.toString());
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+                                    Log.i(TAG, "onError: ----:"+e.getMessage());
+                                    Log.i(TAG, "onError: ----:"+e.toString());
+                                }
+
+                                @Override
+                                public void onComplete() {
+
+                                }
+                            });
+
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+
+        final List<SleepBean> data=new ArrayList();
+        for(int i=0;i<100;i++){
+            SleepBean sleepBean=new SleepBean(1000,23,44444,3333,44444,2222,"第多少条：:"+i,"2019-08-30 00:00:00");
+            data.add(sleepBean);
+        }
+
+
+        final String json2 = JSON.toJSONString(data);
+        Log.i(TAG, "onCreate: -----:"+json2);
+
+        mBtn_click2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    String encode = URLEncoder.encode(json2, "utf-8");
+
+
+
+
+                apiService.testBody2(100003,data)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new DefaultObserver<String>() {
+                        .subscribe(new DefaultObserver<ResultV>() {
                             @Override
-                            public void onNext(String s) {
-                                Log.i(TAG, "onNext: ----");
+                            public void onNext(ResultV s) {
+                                Log.i(TAG, "onNext: ----"+s.toString());
                             }
 
                             @Override
@@ -58,10 +135,13 @@ public class MainActivity extends AppCompatActivity {
 
                             }
                         });
+
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
-
-
 
     }
 }
