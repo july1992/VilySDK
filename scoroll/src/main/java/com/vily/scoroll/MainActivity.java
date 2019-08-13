@@ -19,6 +19,8 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         mRc_recycle = findViewById(R.id.rv_recycle);
@@ -73,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 mDragLayout = new PullUpDragLayout2(MainActivity.this, mRly_root.getHeight());
 
                 mRly_root.addView(mDragLayout);
+
+
 
             }
         });

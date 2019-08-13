@@ -237,11 +237,7 @@ public class PullUpDragLayout2 extends ViewGroup {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 
         mBottomView = getChildAt(0);
-//        mBottomView.layout(0, mHeight, 0, getMeasuredHeight());
         mBottomView.layout(getPaddingLeft(), mHeight, getWidth() - getPaddingRight(), getMeasuredHeight() );
-//        mAutoBackBottomPos.x = mBottomView.getLeft();
-//        mAutoBackBottomPos.y = mBottomView.getTop();
-//        mBoundTopY = mHeight - mBottomView.getHeight() / 2;
         startAni();
     }
 
