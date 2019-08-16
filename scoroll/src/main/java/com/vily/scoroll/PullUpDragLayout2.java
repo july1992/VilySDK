@@ -27,10 +27,12 @@ public class PullUpDragLayout2 extends ViewGroup {
     private View mBottomView;//底部内容View
 
 
-    private int mHeight;
+    private int mHeight=1920;
     LayoutInflater mLayoutInflater;
     private int mBottomBorderHeigth = 50;//底部边界凸出的高度
     private int mBottomHeight=450;
+
+    private int mCurr=0;
 
 
     private Point mAutoBackBottomPos = new Point();
@@ -135,8 +137,9 @@ public class PullUpDragLayout2 extends ViewGroup {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            Log.i(TAG, "onViewPositionChanged: ------------");
+
             if (changedView == mBottomView) {
+                Log.i(TAG, "onViewPositionChanged: ------------");
                 float startPosition = mHeight;
                 float endPosition = mBottomView.getHeight() - mBottomBorderHeigth;
                 float totalLength = endPosition - startPosition;
@@ -157,6 +160,7 @@ public class PullUpDragLayout2 extends ViewGroup {
                 if (Math.abs(mBottomView.getTop() - (mHeight - mBottomView.getHeight())) > dip2px(mBottomBorderHeigth)) {
                     mViewDragHelper.settleCapturedViewAt(0, mHeight - dip2px(mBottomBorderHeigth));
                     isOpen = false;
+                    mCurr=dip2px(50);
                     if (mOnStateListener != null) mOnStateListener.close();
                 } else {
                     mViewDragHelper.settleCapturedViewAt(0, mHeight -dip2px(450));
@@ -167,6 +171,7 @@ public class PullUpDragLayout2 extends ViewGroup {
                 if (Math.abs(mBottomView.getTop() - (mHeight - dip2px(mBottomBorderHeigth))) > dip2px(mBottomBorderHeigth)) {
                     mViewDragHelper.settleCapturedViewAt(0, mHeight - dip2px(450));
                     isOpen = true;
+                    mCurr=dip2px(450);
                     if (mOnStateListener != null) mOnStateListener.open();
 
                 } else {
@@ -208,9 +213,11 @@ public class PullUpDragLayout2 extends ViewGroup {
 
         if (isOpen) {
             mViewDragHelper.smoothSlideViewTo(mBottomView, 0, mHeight - dip2px(mBottomBorderHeigth));
+            mCurr=dip2px(50);
             if (mOnStateListener != null) mOnStateListener.close();
         } else {
             mViewDragHelper.smoothSlideViewTo(mBottomView, 0, mHeight - dip2px(450));
+            mCurr=dip2px(450);
             if (mOnStateListener != null) mOnStateListener.open();
         }
         invalidate();
@@ -228,18 +235,21 @@ public class PullUpDragLayout2 extends ViewGroup {
         int bottomViewHeight = mBottomView.getMeasuredHeight();
 
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), bottomViewHeight + mHeight + getPaddingBottom() + getPaddingTop());
-
-
     }
-
-
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
 
         mBottomView = getChildAt(0);
-        mBottomView.layout(getPaddingLeft(), mHeight, getWidth() - getPaddingRight(), getMeasuredHeight() );
-        startAni();
+        mBottomView.layout(getPaddingLeft(), mHeight-mCurr, getWidth() - getPaddingRight(), getMeasuredHeight() );
+
+        if(mCurr==0){
+            startAni();
+            mCurr=dip2px(50);
+        }
+
     }
+
+
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

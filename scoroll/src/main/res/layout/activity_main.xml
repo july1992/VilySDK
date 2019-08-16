@@ -39,8 +39,7 @@
         <!--android:id="@+id/pull_up_drag_layout"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
-        <!--app:PullUpDrag_BottomBorderHeigth="50dp"-->
-        <!--app:PullUpDrag_BottomView="@layout/view_bottom">-->
+       <!--&gt;-->
 
     <!--</com.vily.scoroll.PullUpDragLayout2>-->
 

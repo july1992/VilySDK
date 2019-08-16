@@ -3,9 +3,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -24,6 +21,7 @@
             <option value="$PROJECT_DIR$/scoroll" />
             <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/vilysdk2" />
+            <option value="$PROJECT_DIR$/ximalaya" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

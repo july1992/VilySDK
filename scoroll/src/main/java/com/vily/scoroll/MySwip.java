@@ -27,9 +27,9 @@ public class MySwip extends SwipeRefreshLayout {
 
 
 
-    @Override
-    public void computeScroll() {
-        Log.i(TAG, "computeScroll: --------MySwip");
-        super.computeScroll();
-    }
+//    @Override
+//    public void computeScroll() {
+//        Log.i(TAG, "computeScroll: --------MySwip");
+//        super.computeScroll();
+//    }
 }

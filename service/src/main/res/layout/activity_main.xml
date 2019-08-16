@@ -5,16 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MusicActivtiy">
 
     <Button
         android:id="@+id/btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="开启服务"
+        android:text="开始播放"
          />
     <Button
         android:id="@+id/btn_stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="暂停"
+        />
+    <Button
+        android:id="@+id/btn_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="继续播放"
+        />
+    <Button
+        android:id="@+id/btn_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="关闭服务"

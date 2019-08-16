@@ -19,7 +19,7 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sBaseApplication=this;
-        AlarmRepeat();
+//        AlarmRepeat();
     }
     public static BaseApplication getApplication(){
         return sBaseApplication;

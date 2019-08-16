@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +16,7 @@
         android:supportsRtl="true"
         android:name=".BaseApplication"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -22,10 +24,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MusicActivtiy" />
+
+        <activity android:name=".LockActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:noHistory="true"
+            android:taskAffinity="com.package.name.lockscreen"
+            android:theme="@style/LockScreenTheme"/>
+
         <service android:name=".MyService"
             android:exported="true"
             android:persistent="true"
-            android:process=":Senblo.Sport"/>
+            android:process=":Senblo.Sport"
+            android:stopWithTask="false"/>
+
+        <service android:name=".MusicService2"
+            android:exported="true"
+            android:persistent="true"
+
+            android:stopWithTask="false"/>
     </application>
 
 </manifest>

@@ -72,7 +72,7 @@ public class MyService extends Service {
             mBuilder.setContentTitle("senblo sport");
 //        notificationManager.notify(10, mBuilder.build());
 
-            Intent newIntent = new Intent(this, MainActivity.class);
+            Intent newIntent = new Intent(this, MusicActivtiy.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             mBuilder.setContentIntent(PendingIntent.getActivity(this, 10, newIntent, PendingIntent.FLAG_UPDATE_CURRENT));
 

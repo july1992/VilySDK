@@ -121,8 +121,9 @@ public class PullUpDragLayout extends ViewGroup {
 
         @Override
         public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
-            Log.i(TAG, "onViewPositionChanged: ------------");
+
             if (changedView == mBottomView) {
+                Log.i(TAG, "onViewPositionChanged: ------------");
                 float startPosition = mContentView.getHeight() - mBottomView.getHeight();
                 float endPosition = mContentView.getHeight() - mBottomBorderHeigth;
                 float totalLength = endPosition - startPosition;
