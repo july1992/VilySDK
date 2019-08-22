@@ -42,4 +42,8 @@ dependencies {
 
     implementation 'com.alibaba:fastjson:1.2.55'
     implementation 'com.alibaba:fastjson:1.2.55.android'
+
+//    implementation ('com.zhousf.lib:okhttp3:2.9.8'){
+//        exclude(module: 'support-annotations')
+//    }
 }

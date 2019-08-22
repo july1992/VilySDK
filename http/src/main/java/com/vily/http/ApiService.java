@@ -65,4 +65,9 @@ public interface ApiService {
     @GET("/senbloapi/sleep/getSleepDataMonth")
     Observable<String> getSleepDataMonth(@Query("user_id") String user_id, @Query("sn") String sn,
                                          @Query("startTime") String startTime, @Query("endTime") String endTime);
+
+
+    // 设备绑定
+    @POST("/api/code/codes")
+    Observable<Object> advertisLogin(@Query("type") String type, @Query("username") String username);
 }

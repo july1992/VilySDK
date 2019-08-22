@@ -11,23 +11,12 @@
         android:id="@+id/btn_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="测试json"
-       />
-    <Button
-        android:id="@+id/btn_click2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试body"
-        />
+        android:text="相加" />
+
 
     <Button
-        android:id="@+id/btn_send"
+        android:id="@+id/btn_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="测试商业广告验证码"/>
-    <Button
-        android:id="@+id/btn_send2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试okhttp"/>
+        android:text="获取列表" />
 </LinearLayout>

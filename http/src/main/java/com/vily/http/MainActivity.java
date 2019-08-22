@@ -11,7 +11,9 @@ import com.alibaba.fastjson.JSON;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DefaultObserver;
@@ -27,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private Button mBtn_click2;
 
 //    private String base_url="http://192.168.93.83:8080/";
-    private String base_url="http://192.168.93.113:8080/";
+//    private String base_url="http://192.168.93.113:8080/";
+    private String base_url="http://106.75.122.206:8000/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,5 +146,56 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        findViewById(R.id.btn_send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                apiService.advertisLogin("sms_login","17521721435")
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new DefaultObserver<Object>() {
+                            @Override
+                            public void onNext(Object s) {
+                                Log.i(TAG, "onNext: ----"+s.toString());
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                Log.i(TAG, "onError: ----:"+e.getMessage());
+                                Log.i(TAG, "onError: ----:"+e.toString());
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
+            }
+        });
+
+        final MCallBack<ResultV> callBack =new MCallBack<ResultV>() {
+            @Override
+            public void onResult(ResultV var1) {
+
+            }
+        };
+        findViewById(R.id.btn_send2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HashMap<String, String> params = new HashMap<>();
+                        params.put("username", "17521721435");
+                        params.put("type", "sms_login");
+                        Log.i(TAG, "run: --------:"+params);
+                        Mhttp.requestGet("http://106.75.122.206:8000/api/code/codes",params);
+                    }
+                }).start();
+
+            }
+        });
     }
 }
