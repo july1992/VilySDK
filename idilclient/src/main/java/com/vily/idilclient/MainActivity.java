@@ -1,4 +1,4 @@
-package com.vily.idil;
+package com.vily.idilclient;
 
 import android.app.Service;
 import android.content.ComponentName;
@@ -12,10 +12,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.vily.idil.NewStub;
+import com.vily.idil.VilyAidl;
 import com.vily.idil.book.bookBean;
 
 import java.util.List;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,11 +24,12 @@ public class MainActivity extends AppCompatActivity {
 
     protected VilyAidl addService;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         // 绑定service 到当前页面
         Intent intent=new Intent(VilyAidl.class.getName());
@@ -80,9 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
+
 
     private ServiceConnection serviceConnection=new ServiceConnection() {
         @Override
