@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        LitePal.deleteAll(SleepBean.class);
+
 
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,24 +53,6 @@ public class MainActivity extends AppCompatActivity {
                 sleepBean.setCreate_time("2018-09-22 22:22:22");
                 sleepBean.setScore((int) (Math.random()*100));
                 sleepBean.save();
-
-//                SleepBean sleepBean2=new SleepBean();
-//                sleepBean2.setUser_id(10003);
-//                sleepBean2.setCreate_time("2018-08-22 12:22:22");
-//                sleepBean2.setScore((int) (Math.random()*100));
-//                sleepBean2.save();
-//
-//                SleepBean sleepBean3=new SleepBean();
-//                sleepBean3.setUser_id(10003);
-//                sleepBean3.setCreate_time("2018-07-22 6:22:22");
-//                sleepBean3.setScore((int) (Math.random()*100));
-//                sleepBean3.save();
-//
-//                SleepBean sleepBean4=new SleepBean();
-//                sleepBean4.setUser_id(10003);
-//                sleepBean4.setCreate_time("2018-06-22 9:22:22");
-//                sleepBean4.setScore((int) (Math.random()*100));
-//                sleepBean4.save();
             }
         });
 
@@ -77,39 +61,45 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                SleepBean sleepBean = LitePal.find(SleepBean.class, 0);
+//                SleepBean sleepBean = LitePal.find(SleepBean.class, 0);
+//                List<SleepBean> all = LitePal.findAll(SleepBean.class);
+//
+//                if(all!=null && all.size()>0){
+//
+//                    for(int i=0;i<all.size();i++){
+//                        Log.i(TAG, "onClick: ----:"+all.get(i).getUser_id()+"---:"+all.get(i).getScore()+"----id:"+all.get(i).getId()
+//                                +all.get(i).getCreate_time());
+//                    }
+//                }else{
+//                    Log.i(TAG, "onClick: -------空的呀");
+//                }
+//
+//                Log.i(TAG, "onClick: ------------------------");
+//
+//                List<SleepBean> sleepBeans = LitePal.where("score>? and score<?", "40", "60").find(SleepBean.class);
+//                if(sleepBeans!=null && sleepBeans.size()>0){
+//
+//                    for(int i=0;i<sleepBeans.size();i++){
+//                        Log.i(TAG, "onClick: ----:"+sleepBeans.get(i).getUser_id()+"---:"+sleepBeans.get(i).getScore()+"----id:"+sleepBeans.get(i).getId()
+//                                +sleepBeans.get(i).getCreate_time());
+//                    }
+//                }
+//
+//                Log.i(TAG, "onClick: ------------------------");
+//
+//                List<SleepBean> datas = LitePal.where("create_time between ? and ?", "2018-07-13 22:22:22", "2018-08-26 22:22:22").find(SleepBean.class);
+//                if(datas!=null && datas.size()>0){
+//
+//                    for(int i=0;i<datas.size();i++){
+//                        Log.i(TAG, "onClick: ----时间段:"+datas.get(i).getUser_id()+"---:"+datas.get(i).getScore()+"----id:"+datas.get(i).getId()
+//                                +datas.get(i).getCreate_time());
+//                    }
+//                }
+
+//                SleepBean first = LitePal.where("create_time = ?", "2018-09-22 22:22:22").findFirst(SleepBean.class);
                 List<SleepBean> all = LitePal.findAll(SleepBean.class);
-
-                if(all!=null && all.size()>0){
-
-                    for(int i=0;i<all.size();i++){
-                        Log.i(TAG, "onClick: ----:"+all.get(i).getUser_id()+"---:"+all.get(i).getScore()+"----id:"+all.get(i).getId()
-                                +all.get(i).getCreate_time());
-                    }
-                }else{
-                    Log.i(TAG, "onClick: -------空的呀");
-                }
-
-                Log.i(TAG, "onClick: ------------------------");
-
-                List<SleepBean> sleepBeans = LitePal.where("score>? and score<?", "40", "60").find(SleepBean.class);
-                if(sleepBeans!=null && sleepBeans.size()>0){
-
-                    for(int i=0;i<sleepBeans.size();i++){
-                        Log.i(TAG, "onClick: ----:"+sleepBeans.get(i).getUser_id()+"---:"+sleepBeans.get(i).getScore()+"----id:"+sleepBeans.get(i).getId()
-                                +sleepBeans.get(i).getCreate_time());
-                    }
-                }
-
-                Log.i(TAG, "onClick: ------------------------");
-
-                List<SleepBean> datas = LitePal.where("create_time between ? and ?", "2018-07-13 22:22:22", "2018-08-26 22:22:22").find(SleepBean.class);
-                if(datas!=null && datas.size()>0){
-
-                    for(int i=0;i<datas.size();i++){
-                        Log.i(TAG, "onClick: ----时间段:"+datas.get(i).getUser_id()+"---:"+datas.get(i).getScore()+"----id:"+datas.get(i).getId()
-                                +datas.get(i).getCreate_time());
-                    }
+                for(int i=0;i<all.size();i++){
+                    Log.i(TAG, "onClick: -----:"+all.get(i).toString());
                 }
 
 
@@ -119,6 +109,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 LitePal.deleteAll(SleepBean.class);
+            }
+        });
+
+        findViewById(R.id.btn_update).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SleepBean first = LitePal.where("create_time = ?", "2018-09-22 22:22:22").findFirst(SleepBean.class);
+                Log.i(TAG, "onClick: -----:"+first.toString());
+                first.setScore(123131313);
+                first.setSn("sssss");
+                first.save();
+                Log.i(TAG, "onClick: --------:"+first.toString());
             }
         });
     }

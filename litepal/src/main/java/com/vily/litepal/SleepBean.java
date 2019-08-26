@@ -69,4 +69,15 @@ public class SleepBean extends LitePalSupport {
     public void setCreate_time(String create_time) {
         this.create_time = create_time;
     }
+
+    @Override
+    public String toString() {
+        return "SleepBean{" +
+                "id=" + id +
+                ", user_id=" + user_id +
+                ", score=" + score +
+                ", sn='" + sn + '\'' +
+                ", create_time='" + create_time + '\'' +
+                '}';
+    }
 }
