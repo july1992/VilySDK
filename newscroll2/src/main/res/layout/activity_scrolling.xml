@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llf"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    tools:context=".ScrollingActivity">
+
+
+    <android.support.design.widget.CoordinatorLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:fitsSystemWindows="true">
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:toolbarId="@id/toolbar">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <include layout="@layout/content_scrolling" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+
+            app:layout_anchor="@id/app_bar"
+            app:layout_anchorGravity="top|center"
+            android:src="@mipmap/ic_launcher"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+    <!--app:layout_behavior="com.vily.newscroll2.MyBehavior"-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#00c3c3c3"
+        android:text="sssssss" />
+</FrameLayout>

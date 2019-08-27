@@ -2,47 +2,81 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llf"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:fitsSystemWindows="true"
-    tools:context=".ScrollingActivity"
-    android:id="@+id/llf">
+    tools:context=".ScrollingActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
+        android:layout_height="200dp"
         android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="200dp"
             android:fitsSystemWindows="true"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll"
             app:toolbarId="@+id/toolbar">
+
+            <ImageView
+                android:id="@+id/main.backdrop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#ccc000"
+                android:scaleType="centerCrop"
+
+                app:layout_collapseMode="pin"
+                app:layout_collapseParallaxMultiplier="0.5" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="0dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_scrolling" />
+    <!--<include layout="@layout/content_scrolling" />-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_recycle"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="top|center"
+        android:layout_marginTop="100dp"
+        android:clickable="true"
+
+        app:fabSize="normal"
+        app:layout_behavior="com.vily.newscrollactivity.MyBehavior"
+     />
+
+
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,7 +1,7 @@
 package com.vily.ximalaya;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.MyActionbar;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -20,7 +20,7 @@ public class ScrollingActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        MyActionbar fab = (MyActionbar) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

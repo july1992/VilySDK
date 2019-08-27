@@ -18,9 +18,12 @@
             <option value="$PROJECT_DIR$/idilclient" />
             <option value="$PROJECT_DIR$/litepal" />
             <option value="$PROJECT_DIR$/map" />
+            <option value="$PROJECT_DIR$/newscroll2" />
             <option value="$PROJECT_DIR$/newscrollactivity" />
             <option value="$PROJECT_DIR$/pay" />
             <option value="$PROJECT_DIR$/progressbar" />
+            <option value="$PROJECT_DIR$/recyclepull" />
+            <option value="$PROJECT_DIR$/refresh-layout" />
             <option value="$PROJECT_DIR$/scoroll" />
             <option value="$PROJECT_DIR$/service" />
             <option value="$PROJECT_DIR$/vilysdk2" />
